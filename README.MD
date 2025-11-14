@@ -59,3 +59,4 @@ Dynamicly set through [specs.vh](./specs.vh)
 - [ ] more instructions to support
 - [ ] dynamic opcode size
 - [ ] other cpu related components
+- [ ] better testing, because ASSERT is for single check right now
