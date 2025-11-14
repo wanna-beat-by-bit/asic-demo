@@ -1,4 +1,6 @@
-# ROAD TO CPU
+# ASIC Demo
+
+Some CPU related components will be presented in the project.
 
 A minimal **pipelined Arithmetic Logic Unit (ALU)** implemented in Verilog(semi System Verilog)
 
