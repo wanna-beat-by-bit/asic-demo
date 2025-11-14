@@ -11,6 +11,13 @@ Project includes:
 
 Designed for learning ASIC design.
 
+
+## Goals
+
+- testable units
+- designed to be easily exntensible
+- easy to build and run on any system (docker + Makefile)
+
 ## Usage
 
 ```
@@ -22,12 +29,6 @@ make dev-build
 make dev
 make test_all
 ```
-
-## Goals
-
-- testable units
-- designed to be easily exntensible
-- easy to build and run on any system (docker + Makefile)
 
 ## 🖼️ Architecture Overview (ASCII Diagram)
 Current scheme [here](./scheme.md)
