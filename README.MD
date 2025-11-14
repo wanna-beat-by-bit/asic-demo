@@ -27,6 +27,9 @@ requirements:
 steps:
 make dev-build
 make dev
+
+Then inside created container:
+cd app
 make test_all
 ```
 
