@@ -1,14 +1,15 @@
 `timescale 1ns/1ps
 
 module pipeline_alu #(
-    parameter WIDTH = `WORD
+    parameter WIDTH = `WORD,
+    parameter OP_WIDTH = `OP_WIDTH
 )(
     input wire i_clk,
     input wire i_rst,
 
     input wire [WIDTH-1:0] i_a,
     input wire [WIDTH-1:0] i_b,
-    input wire [2:0] i_opcode,
+    input wire [OP_WIDTH-1:0] i_opcode,
     input wire i_valid,
 
     output reg [WIDTH-1:0] o_result,
@@ -23,12 +24,12 @@ wire alu_cf;
 
 reg [WIDTH-1:0] r_a;
 reg [WIDTH-1:0] r_b;
-reg [2:0] r_opcode;
+reg [OP_WIDTH-1:0] r_opcode;
 reg r_valid;
 
 reg [WIDTH-1:0] r_result;
 
-alu_8bit alu8 (
+alu alu_inst (
     .i_a(r_a),
     .i_b(r_b),
     .i_opcode(r_opcode),

@@ -1,7 +1,7 @@
 services:
-  verilogdev:
+  veridev:
     build: .
     volumes:
       - .:/app
-    container_name: verilogDev
+    container_name: veridc
     command: sh -c "sleep infinity"

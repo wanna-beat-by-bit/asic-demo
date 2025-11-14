@@ -10,5 +10,18 @@
 
 // supported cpu bit width
 `define WORD 8
+`define OP_WIDTH 3
+
+// opcode map
+function string opname;
+    input [`OP_WIDTH-1:0] op;
+    case(op)
+        `OP_SUM: opname = "SUM";
+        `OP_SUB: opname = "SUB";
+        `OP_AND: opname = "AND";
+        `OP_XOR: opname = "XOR";
+        default: opname = "???";
+    endcase
+endfunction
 
 `endif // SPECS_VH

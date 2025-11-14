@@ -3,7 +3,8 @@
 `include "specs.vh"
 
 module bench #(
-    parameter WIDTH = `WORD 
+    parameter WIDTH = `WORD,
+    parameter OP_WIDTH = `OP_WIDTH
 );
 
 // Сигналы
@@ -11,7 +12,7 @@ reg t_clk;
 reg t_rst;
 reg [WIDTH-1:0] t_a;
 reg [WIDTH-1:0] t_b;
-reg [2:0] t_op;
+reg [OP_WIDTH-1:0] t_op;
 reg t_i_valid;
 reg [31:0] t_clk_counter;
 
@@ -21,7 +22,7 @@ wire t_cf;
 wire t_o_valid;
 
 // Инстанцирование тестируемого модуля
-pipeline_alu pa8 (
+pipeline_alu pipie_alu (
     .i_clk(t_clk),
     .i_rst(t_rst),
     .i_a(t_a),
@@ -52,7 +53,7 @@ endtask
 
 task automatic test_opcode;
     input logic [WIDTH-1:0] a, b, expected_result;
-    input logic [2:0] opcode;
+    input logic [OP_WIDTH-1:0] opcode;
     begin
         t_a = a;
         t_b = b;
@@ -61,7 +62,7 @@ task automatic test_opcode;
         tick(2);
         `ASSERT(
             t_result == expected_result, 
-            $sformatf("OPCODE[%b]: %0d, %0d", opcode, a, b), 
+            $sformatf("OPCODE[%s]: %0d, %0d", opname(opcode), a, b), 
             $sformatf("expected %0d, but actual %0d[%b]", expected_result, t_result, t_result))
     end
 endtask 
