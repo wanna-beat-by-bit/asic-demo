@@ -16,7 +16,7 @@ requirements:
 1. docker
 
 steps:
-make dev-buidl
+make dev-build
 make dev
 make test_all
 ```
