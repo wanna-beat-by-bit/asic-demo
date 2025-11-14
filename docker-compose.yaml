@@ -1,0 +1,7 @@
+services:
+  verilogdev:
+    build: .
+    volumes:
+      - .:/app
+    container_name: verilogDev
+    command: sh -c "sleep infinity"
