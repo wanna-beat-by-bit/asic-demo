@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e;
 
 if [ $# -lt 2 ]; then
     echo "usage: $0 file1 file2 ... -o output_file"
