@@ -33,8 +33,10 @@ cd app
 make test_all
 ```
 
-## 🖼️ Architecture Overview (ASCII Diagram)
-Current scheme [here](./scheme.md)
+## 🖼️ Current ALU Overview 
+
+### Scheme 
+[here](./scheme.md)
 
 ### Supported operation codes:
 
@@ -55,9 +57,7 @@ Current scheme [here](./scheme.md)
 |OT_SHR| 10 -> 01 |🛠️|
 |OT_SHL| 10 <- 01 |🛠️|
 
-### WORD size
-
-Dynamicly set through [specs](./src/specs.vh)
+**WORD** size Dynamicly set through [specs](./src/specs.vh)
 
 ## MINOR TODO
 
