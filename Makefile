@@ -1,3 +1,5 @@
+MAKEFLAGS += --warn-undefined-variables
+ 
 .PHONY: dev-build dev 
 
 dev-build:
