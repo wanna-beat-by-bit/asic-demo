@@ -2,15 +2,11 @@
 
 Some CPU related components will be presented in the project.
 
-A minimal **pipelined Arithmetic Logic Unit (ALU)** implemented in Verilog(semi System Verilog)
-
-Project includes:
-* testbench 
-* assertions 
-* clean modular structure. 
-
-Designed for learning ASIC design.
-
+## TODO
+- [x] alu
+- [x] register file
+- [ ] control unit
+- [ ] core
 
 ## Goals
 
@@ -37,9 +33,6 @@ make test_alu
 
 ## 🖼️ Current ALU Overview 
 
-### Scheme 
-[here](./scheme.md)
-
 ### Supported operation codes:
 
 |code|description|ready|
@@ -60,10 +53,3 @@ make test_alu
 |OT_SHL| 10 <- 01 |🛠️|
 
 **WORD** size Dynamicly set through [specs](./src/specs.vh)
-
-## MAJOR TODO
-
-- [ ] more tests
-- [ ] more instructions to support
-- [ ] control unit
-- [x] register file
