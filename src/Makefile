@@ -1,14 +1,15 @@
 MAKEFLAGS += --warn-undefined-variables
 
 LIB = specs.vh tools.v
-SOURCE_FILES = ./alu/alu.v pipeline.v test.v  
 SOURCE_ALU = ./alu/alu.v ./alu/alu_test.v
+SRC_RF = ./register_file/register_file.v ./register_file/register_file_test.v
+SOURCE_FILES = $(SOURCE_ALU) $(SRC_RF)  # pipeline.v test.v  
 
 define context_rule
 	./compose.sh $1 $(LIB) -o $2
 endef 
 
-.PHONY: test_all test_alu clean context context_alu
+.PHONY: test_all test_alu test_rf clean context context_alu
 
 context: $(SOURCE_FILES) $(LIB)
 	$(call context_rule, $(SOURCE_FILES), context)
@@ -18,18 +19,17 @@ context_alu: $(SOURCE_ALU) $(LIB)
 
 context context_alu: compose.sh
 
-run: $(SOURCE_FILES) $(LIB)
-	iverilog -g2012 -o run $(SOURCE_FILES) $(LIB)
+test_all: test_alu test_rf
+	@echo "all test execution"
 
-run_alu: $(SOURCE_ALU) $(LIB)
+test_alu: $(SOURCE_ALU) $(LIB)
 	iverilog -g2012 -o run_alu $(SOURCE_ALU) $(LIB)
-
-test_all: run run_alu
-	vvp run
 	vvp run_alu
 
-test_alu: run_alu
-	vvp run_alu
+test_rf: $(SRC_RF) $(LIB)
+	iverilog -g2012 -o run_rf $(SRC_RF) $(LIB)
+	vvp run_rf
+
 
 clean:
 	rm -f run run* context context*
