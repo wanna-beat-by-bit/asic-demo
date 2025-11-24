@@ -2,7 +2,7 @@
 `include "specs.vh"
 
 // specs:
-// - 32 registers (inspired by RISC-V)
+// - 32 registers 
 // - 5 bit address space (log2(32))
 
 module register_file #(
