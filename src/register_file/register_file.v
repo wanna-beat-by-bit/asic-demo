@@ -18,8 +18,8 @@ module register_file #(
     input wire [ADDR_SPACE-1:0] wr_addr,
     input wire wr_en,
     input wire [WIDTH-1:0] wr_data,
-    output reg [WIDTH-1:0] r1,
-    output reg [WIDTH-1:0] r2
+    output reg [WIDTH-1:0] r1_data,
+    output reg [WIDTH-1:0] r2_data
 );
 
 reg [WIDTH-1:0] registers [0:REG_AMOUNT-1];
@@ -31,7 +31,7 @@ always @(posedge clk or posedge rst) begin
             registers[i] <= 0;
         end 
     end else begin
-        if (wr_en && wr_addr != ZERO_REGISTER) begin
+        if (wr_en && (wr_addr != ZERO_REGISTER)) begin
             registers[wr_addr] <= wr_data;
         end
         registers[ZERO_REGISTER] <= 0;
@@ -39,8 +39,8 @@ always @(posedge clk or posedge rst) begin
 end
 
 always_comb begin
-    r1 = (r1_addr == ZERO_REGISTER) ? 0 : registers[r1_addr];
-    r2 = (r2_addr == ZERO_REGISTER) ? 0 : registers[r2_addr];
+    r1_data = (r1_addr == ZERO_REGISTER) ? 0 : registers[r1_addr];
+    r2_data = (r2_addr == ZERO_REGISTER) ? 0 : registers[r2_addr];
 end
 
 endmodule

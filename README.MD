@@ -1,12 +1,5 @@
-# ASIC Demo
-
-Some CPU related components will be presented in the project.
-
-## TODO
-- [x] alu
-- [x] register file
-- [ ] control unit
-- [ ] core
+# CPU-CORE
+Trying to implement RISC-V like core
 
 ## Goals
 
@@ -27,9 +20,8 @@ make dev
 Then inside created container:
 cd app
 make test_all
-make test_rf
-make test_alu
 ```
+Latter add support on running test for sepparate modules.
 
 ## 🖼️ Current ALU Overview 
 

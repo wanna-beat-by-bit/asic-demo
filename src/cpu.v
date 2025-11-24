@@ -1,10 +1,11 @@
 // basically this is a top
 
 module cpu #(
+    parameter OP_WIDTH = `OP_WIDTH-1,
     parameter PC_WIDTH = INS_ADDRESS_SPACE-1,
-    parameter INSTR_WIDTH = 16-1,
-    parameter DATA_WIDTH = `WORD;
-    parameter ADDR_SPACE = `REG_ADDRESS_SPACE-1;
+    parameter INSTR_WIDTH = `INS_WIDTH-1,
+    parameter DATA_WIDTH = `WORD,
+    parameter ADDR_SPACE = `REG_ADDRESS_SPACE-1
 )(
     input wire clk;
     input wire rst;
@@ -17,20 +18,22 @@ reg [PC_WIDTH:0] pc_current;
 // single instruction 
 wire [INSTR_WIDTH:0] instruction;
 
-// instruction slicing
-wire [2:0] opcode = instruction[15:13];
-wire [ADDR_SPACE:0] r_src_addr = instruction[12:8];
-wire [ADDR_SPACE:0] r_dst_addr = instruction[7:3];
-wire [2:0] funct = instruction[2:0];
+// instruction slicing 
+wire [6:0] funct7 = instruction[31:25]
+wire [4:0] rs2 = instruction[24:20]
+wire [4:0] rs1 = instruction[19:15]
+wire [2:0] funct3 = instruction[14:12]
+wire [4:0] rd = instruction[11:7]
+wire [6:0] opcode = instruction[6:0]
 
 // ctrl signals
-wire reg_write = (opcode == 3'b000); // r-type
-wire alu_src = 0; // keep default a register for now
-wire [2:0] alu_op = funct;
+wire reg_write;
+wire alu_src; 
+wire [2:0] alu_op;
 
 // data
-wire [DATA_WIDTH-1:0] r_src_data;
-wire [DATA_WIDTH-1:0] r_dst_data;
+wire [DATA_WIDTH-1:0] rs1_data;
+wire [DATA_WIDTH-1:0] rs2_data;
 wire [DATA_WIDTH-1:0] alu_in_b; // pick second operand
 wire [DATA_WIDTH-1:0] alu_result;
 wire alu_zero, alu_cf;
@@ -50,29 +53,29 @@ rom rom_inst(
 register_file rf_inst (
     .clk(clk),
     .rst(rst),
-    .r1_addr(r_src_addr),
-    .r2_addr(r_dst_addr),
-    .wr_addr(r_dst_addr),
+    .r1_addr(rs1),
+    .r2_addr(rs2),
+    .wr_addr(rd),
     .wr_en(reg_write),
     .wr_data(alu_result),
-    .r1(r_src_data),
-    .r2(r_dst_data)
+    .r1(rs1_data),
+    .r2(rs2_data)
 );
 
 control_unit cunit(
     .opcode(opcode),
-    .reg_write(reg_write),
-    .alu_src(alu_src), // registers - 0, immediate - 1
+    .is_reg_write(reg_write),
+    .alu_src_type(alu_src), // registers - 0, immediate - 1
     .alu_op(alu_op)
 );
 
 alu alu_inst(
-    .i_a(r_src_addr),
-    .i_b(r_dst_addr),
-    .i_opcode(opcode),
-    .o_result(),
-    .o_zero,
-    .o_cf
+    .i_a(rs1_data),
+    .i_b(alu_src ? imm : r_dst_data), // immediate or register data
+    .i_opcode(alu_op),
+    .o_result(alu_result),
+    .o_zero(alu_zero),
+    .o_cf(alu_cf)
 );
 
 endmodule

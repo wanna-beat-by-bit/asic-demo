@@ -1,6 +1,12 @@
 `ifndef SPECS_VH
 `define SPECS_VH
 
+// opcode types
+`define R_TYPE 0
+`define NOT_R_TYPE 1
+`define WR_EN 1
+`define WR_DISEN 0
+
 // supported opcodes
 `define OP_SUM  3'b000
 `define OP_SUB  3'b001
@@ -11,11 +17,13 @@
 // supported cpu bit width
 `define WORD 32
 
-`define OP_WIDTH 3
+`define OP_WIDTH 6
 
 `define REG_ADDRESS_SPACE 5
 
-`define INS_ADDRESS_SPACE = 4
+`define INS_ADDRESS_SPACE 4
+`define INS_WIDTH 32
+
 
 // opcode map
 function string opname;
