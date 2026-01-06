@@ -35,26 +35,27 @@ task automatic test_op;
     input [WIDTH-1:0] a, b, exp_res;
     input [OP_WIDTH-1:0] op;
     input       exp_cf;
+    input string name;
     begin
         t_a = a; t_b = b; t_opcode = op;
         tick(1);
          `ASSERT(
              (o_result === exp_res) && (o_cf === exp_cf) && (o_zero === (exp_res == 0)),
-             $sformatf("ALU: %b %s %b", a, opname(op), b),
-             $sformatf("got: res=%b, cf=%b, zero=%b | exp: res=%b, cf=%b, zero=%b",
+             name,
+             $sformatf("got: res=%x, cf=%x, zero=%x | exp: res=%x, cf=%x, zero=%x",
                  o_result, o_cf, o_zero, exp_res, exp_cf, (exp_res==0))
          );
     end
 endtask
 
 initial begin
-    test_op(3, 4, 7, `OP_SUM, 0);
-    test_op(255, 1, 0, `OP_SUM, 1); // carry due to overflow
-    test_op(5, 3, 2, `OP_SUB, 0);
-    test_op(3, 5, 254, `OP_SUB, 1); // assert CF=1
-    test_op(8'b11110000, 8'b10101010, 8'b10100000, `OP_AND, 0);
-    test_op(8'b11110000, 8'b10101010, 8'b01011010, `OP_XOR, 0);
-    test_op(5, 5, 0, `OP_SUB, 1); // assert zero=1 || CF=1
+    test_op(3, 4, 7, `OP_SUM, 0, "alu sum");
+    test_op(32'hffffffff, 1, 0, `OP_SUM, 1, "alu sum and carry"); // carry due to overflow
+    test_op(5, 3, 2, `OP_SUB, 0, "alu sub");
+    test_op(32'h00000003, 5, 32'hfffffffe, `OP_SUB, 1, "alu sub and cf"); // assert CF=1
+    test_op(8'b11110000, 8'b10101010, 8'b10100000, `OP_AND, 0, "alu and");
+    test_op(8'b11110000, 8'b10101010, 8'b01011010, `OP_XOR, 0, "alu xor");
+    test_op(32'h00000001, 1, 0, `OP_SUB, 0, "alu zero on sub"); // ZR=1 || CF=0
 
     $finish;
 end

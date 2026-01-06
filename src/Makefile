@@ -33,3 +33,7 @@ test_rf: $(SRC_RF) $(LIB)
 
 clean:
 	rm -f run run* context context*
+
+testany:
+	iverilog -g2012 -o run_testany testany.v 
+	vvp run_testany
