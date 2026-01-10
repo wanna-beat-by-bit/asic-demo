@@ -49,13 +49,13 @@ task automatic test_op;
 endtask
 
 initial begin
-    test_op(3, 4, 7, `OP_SUM, 0, "alu sum");
-    test_op(32'hffffffff, 1, 0, `OP_SUM, 1, "alu sum and carry"); // carry due to overflow
-    test_op(5, 3, 2, `OP_SUB, 0, "alu sub");
-    test_op(32'h00000003, 5, 32'hfffffffe, `OP_SUB, 1, "alu sub and cf"); // assert CF=1
-    test_op(8'b11110000, 8'b10101010, 8'b10100000, `OP_AND, 0, "alu and");
-    test_op(8'b11110000, 8'b10101010, 8'b01011010, `OP_XOR, 0, "alu xor");
-    test_op(32'h00000001, 1, 0, `OP_SUB, 0, "alu zero on sub"); // ZR=1 || CF=0
+    test_op(3, 4, 7, `ALU_ADD, 0, "alu add");
+    test_op(32'hffffffff, 1, 0, `ALU_ADD, 1, "alu sum and carry"); // carry due to overflow
+    test_op(5, 3, 2, `ALU_SUB, 0, "alu sub");
+    test_op(32'h00000003, 5, 32'hfffffffe, `ALU_SUB, 1, "alu sub and cf"); // assert CF=1
+    test_op(8'b11110000, 8'b10101010, 8'b10100000, `ALU_AND, 0, "alu and");
+    test_op(8'b11110000, 8'b10101010, 8'b01011010, `ALU_XOR, 0, "alu xor");
+    test_op(32'h00000001, 1, 0, `ALU_SUB, 0, "alu zero on sub"); // ZR=1 || CF=0
 
     $finish;
 end

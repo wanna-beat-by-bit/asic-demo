@@ -1,5 +1,6 @@
 `timescale 1ns/1ps
 `include "specs.vh"
+`include "alu_opcodes.vh"
 
 module alu #(
     parameter WIDTH = `WORD,
@@ -19,17 +20,23 @@ wire [WIDTH+1-1:0] extended_sum = {1'b0, i_a} + {1'b0, i_b};
 // wire [WIDTH+1-1:0] extended_sub = {1'b0, i_a} - {1'b0, i_b}; 
 
 assign o_zero = (r_result == 0);
-assign o_cf = (i_opcode == `OP_SUM)  ? extended_sum[WIDTH]   :  
-              (i_opcode == `OP_SUB)  ? (i_a < i_b)       : 1'b0;
+assign o_cf = (i_opcode == `ALU_ADD)  ? extended_sum[WIDTH]   :  
+              (i_opcode == `ALU_SUB)  ? (i_a < i_b)       : 1'b0;
 assign o_result = r_result;
 
 always_comb begin
     case(i_opcode)
-        `OP_SUM: r_result = i_a + i_b;
-        `OP_SUB: r_result = i_a - i_b;
-        `OP_AND: r_result = i_a & i_b;
-        `OP_XOR: r_result = i_a ^ i_b;
-        `OP_NOP: r_result = i_a;  
+        `ALU_ADD: r_result = i_a + i_b;
+        `ALU_SUB: r_result = i_a - i_b;
+        `ALU_AND: r_result = i_a & i_b;
+        `ALU_XOR: r_result = i_a ^ i_b;
+        `ALU_OR: r_result = i_a | i_b;
+        `ALU_SLL: r_result = i_a << i_b;
+        `ALU_SRL: r_result = i_a >> i_b;
+        `ALU_SRA: r_result = $signed(i_a) >>> i_b;
+        `ALU_SLT: r_result = i_a < i_b;
+        `ALU_SLTU: r_result = i_a < i_b;
+        `ALU_NOP: r_result = i_a;  
         default: r_result = 0;
     endcase
 end
