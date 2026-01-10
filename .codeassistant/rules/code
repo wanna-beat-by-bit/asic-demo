@@ -15,9 +15,8 @@
 
 ## RISC-V Compliance
 1. Follow RV32I base instruction set specification
-2. Use standard 7-bit opcodes from RISC-V specification
-3. Use standard FUNCT3 and FUNCT7 fields where applicable
-4. Maintain compatibility with standard RISC-V assembly syntax
+2. Use standard FUNCT3 and FUNCT7 fields where applicable
+3. Maintain compatibility with standard RISC-V assembly syntax
 
 ## Testing Standards
 1. Each module should have a corresponding test file
@@ -36,3 +35,10 @@
 1. Use standard targets: `test_all`, `clean`, etc.
 2. Keep build dependencies clear and organized
 3. Use variables for repeated paths and file lists
+
+## Testing Workflow
+1. Individual module tests can be run using `make test_{module}` (e.g., `make test_alu`)
+2. All tests can be run using `make test_all`
+3. Tests can be executed in the Docker container with: `docker exec -it veridc /bin/bash -c "cd app; make test_{module}"`
+4. Always verify changes by running relevant tests before committing
+5. Add new test cases when adding new functionality
