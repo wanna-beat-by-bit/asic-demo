@@ -1,0 +1,38 @@
+# RISC-V CPU Core Project Rules
+
+## Project Structure
+- Verilog source files in `src/` directory
+- Test files in same directory as corresponding source files
+- Header files use `.vh` extension
+- Source files use `.v` extension
+- Test files use `_test.v` suffix
+
+## Verilog Coding Standards
+1. Use `` `define` for constants and macros in header files
+2. Use `` `ifndef`/`define`/`endif` guards for header files
+3. Use `i_` prefix for inputs, `o_` for outputs, `r_` for registers
+4. Use `t_` prefix for test variables
+
+## RISC-V Compliance
+1. Follow RV32I base instruction set specification
+2. Use standard 7-bit opcodes from RISC-V specification
+3. Use standard FUNCT3 and FUNCT7 fields where applicable
+4. Maintain compatibility with standard RISC-V assembly syntax
+
+## Testing Standards
+1. Each module should have a corresponding test file
+2. Test files should be named `{module}_test.v`
+3. Use `test_` prefix for test tasks and functions
+4. Use `` `ASSERT` macro for test assertions
+5. Include comprehensive test cases for all functionality
+
+## Documentation
+1. Comment all major functionality
+2. Include RISC-V specification references where applicable
+3. Document instruction formats and behavior
+4. Use consistent comment style throughout
+
+## Makefile Standards
+1. Use standard targets: `test_all`, `clean`, etc.
+2. Keep build dependencies clear and organized
+3. Use variables for repeated paths and file lists
