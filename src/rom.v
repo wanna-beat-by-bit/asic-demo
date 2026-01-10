@@ -1,14 +1,14 @@
 
 
 module rom #(
-    parameter WIDTH = `WORD,
-    parameter INS_AS = `INS_ADDRESS_SPACE-1;
+    parameter DATA_WIDTH = 32,
+    parameter ADDR_WIDTH = 4
 )(
-    input wire [INS_AS:0] addr; // amount of address space for 16 instructions.
-    output reg [WIDTH-1:0] r_data;
+    input wire [ADDR_WIDTH-1:0] addr,
+    output reg [DATA_WIDTH-1:0] r_data
 );
 
-reg [WIDTH-1:0] rom [0:15];
+reg [DATA_WIDTH-1:0] rom [0:15];
 
 
 
@@ -32,7 +32,7 @@ initial begin
 end
 
 always_comb begin
-    r_data = rom[addr]
+    r_data = rom[addr];
 end
 
 

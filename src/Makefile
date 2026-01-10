@@ -19,7 +19,7 @@ context_alu: $(SOURCE_ALU) $(LIB)
 
 context context_alu: compose.sh
 
-test_all: test_alu test_rf
+test_all: test_alu test_rf test_cpu
 	@echo "all test execution"
 
 test_alu: $(SOURCE_ALU) $(LIB)
@@ -29,6 +29,10 @@ test_alu: $(SOURCE_ALU) $(LIB)
 test_rf: $(SRC_RF) $(LIB)
 	iverilog -g2012 -o run_rf $(SRC_RF) $(LIB)
 	vvp run_rf
+
+test_cpu: cpu.v cpu_test.v pc.v rom.v register_file/register_file.v control_unit.v alu/alu.v $(LIB)
+	iverilog -g2012 -o run_cpu cpu.v cpu_test.v pc.v rom.v register_file/register_file.v control_unit.v alu/alu.v $(LIB)
+	vvp run_cpu
 
 
 clean:

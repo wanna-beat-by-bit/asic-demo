@@ -1,10 +1,10 @@
 module pc #(
-    parameter INS_AS = `INS_ADDRESS_SPACE-1;
+    parameter WIDTH = 4
 )(
-    input wire clk;
-    input wire rst;
-    input wire [INS_AS:0] next_pc; // width for 8 bit word, mean 256 byte memory.
-    output reg [INS_AS:0] current_pc; 
+    input wire clk,
+    input wire rst,
+    input wire [WIDTH-1:0] next_pc,
+    output reg [WIDTH-1:0] current_pc
 );
 
 always @(posedge clk or posedge rst) begin

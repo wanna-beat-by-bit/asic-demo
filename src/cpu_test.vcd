@@ -1,0 +1,471 @@
+$date
+	Fri Jan  9 16:42:50 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module cpu_test $end
+$var reg 1 ! clk $end
+$var reg 1 " rst $end
+$scope module cpu_inst $end
+$var wire 1 ! clk $end
+$var wire 1 " rst $end
+$var wire 3 # simple_opcode [2:0] $end
+$var wire 32 $ rs2_data [31:0] $end
+$var wire 5 % rs2 [4:0] $end
+$var wire 32 & rs1_data [31:0] $end
+$var wire 5 ' rs1 [4:0] $end
+$var wire 1 ( reg_write $end
+$var wire 5 ) rd [4:0] $end
+$var wire 4 * pc_next [3:0] $end
+$var wire 4 + pc_current [3:0] $end
+$var wire 7 , opcode [6:0] $end
+$var wire 32 - instruction [31:0] $end
+$var wire 32 . imm [31:0] $end
+$var wire 7 / funct7 [6:0] $end
+$var wire 3 0 funct3 [2:0] $end
+$var wire 1 1 alu_zero $end
+$var wire 1 2 alu_src $end
+$var wire 32 3 alu_result [31:0] $end
+$var wire 3 4 alu_op [2:0] $end
+$var wire 32 5 alu_in_b [31:0] $end
+$var wire 1 6 alu_cf $end
+$var parameter 32 7 ADDR_SPACE $end
+$var parameter 32 8 DATA_WIDTH $end
+$var parameter 32 9 INSTR_WIDTH $end
+$var parameter 32 : OP_WIDTH $end
+$var parameter 32 ; PC_WIDTH $end
+$scope module alu_inst $end
+$var wire 32 < i_b [31:0] $end
+$var wire 32 = o_result [31:0] $end
+$var wire 1 1 o_zero $end
+$var wire 1 6 o_cf $end
+$var wire 3 > i_opcode [2:0] $end
+$var wire 32 ? i_a [31:0] $end
+$var wire 33 @ extended_sum [32:0] $end
+$var parameter 32 A OP_WIDTH $end
+$var parameter 32 B WIDTH $end
+$var reg 32 C r_result [31:0] $end
+$upscope $end
+$scope module cunit $end
+$var wire 3 D opcode [2:0] $end
+$var parameter 3 E OP_TYPE $end
+$var parameter 32 F OP_WIDTH $end
+$var reg 3 G alu_op [2:0] $end
+$var reg 1 2 alu_src_type $end
+$var reg 1 ( is_reg_write $end
+$upscope $end
+$scope module pc_inst $end
+$var wire 1 ! clk $end
+$var wire 4 H next_pc [3:0] $end
+$var wire 1 " rst $end
+$var parameter 32 I WIDTH $end
+$var reg 4 J current_pc [3:0] $end
+$upscope $end
+$scope module rf_inst $end
+$var wire 1 ! clk $end
+$var wire 5 K r1_addr [4:0] $end
+$var wire 5 L r2_addr [4:0] $end
+$var wire 1 " rst $end
+$var wire 5 M wr_addr [4:0] $end
+$var wire 32 N wr_data [31:0] $end
+$var wire 1 ( wr_en $end
+$var parameter 32 O ADDR_SPACE $end
+$var parameter 32 P REG_AMOUNT $end
+$var parameter 32 Q WIDTH $end
+$var parameter 5 R ZERO_REGISTER $end
+$var reg 32 S r1_data [31:0] $end
+$var reg 32 T r2_data [31:0] $end
+$scope begin $unm_blk_14 $end
+$var integer 32 U i [31:0] $end
+$upscope $end
+$upscope $end
+$scope module rom_inst $end
+$var wire 4 V addr [3:0] $end
+$var parameter 32 W ADDR_WIDTH $end
+$var parameter 32 X DATA_WIDTH $end
+$var reg 32 Y r_data [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100000 X
+b100 W
+b0 R
+b100000 Q
+b100000 P
+b101 O
+b100 I
+b11 F
+b0 E
+b100000 B
+b11 A
+b100 ;
+b110 :
+b100000 9
+b100000 8
+b101 7
+$end
+#0
+$dumpvars
+b10011 Y
+b0 V
+b100000 U
+b0 T
+b0 S
+b0 N
+b0 M
+b0 L
+b0 K
+b0 J
+b1 H
+b0 G
+b0 D
+b0 C
+b0 @
+b0 ?
+b0 >
+b0 =
+b0 <
+06
+b0 5
+b0 4
+b0 3
+02
+11
+b0 0
+b0 /
+b0 .
+b10011 -
+b10011 ,
+b0 +
+b1 *
+b0 )
+1(
+b0 '
+b0 &
+b0 %
+b0 $
+b0 #
+1"
+0!
+$end
+#5000
+b100000 U
+1!
+#10000
+0!
+#15000
+b100000 U
+1!
+#20000
+0!
+0"
+#25000
+b110011 ,
+b11 )
+b11 M
+b10 '
+b10 K
+b10000000110110011 -
+b10000000110110011 Y
+b10 *
+b10 H
+b1 +
+b1 J
+b1 V
+1!
+#30000
+0!
+#35000
+b100 )
+b100 M
+b11 '
+b11 K
+b11000001000110011 -
+b11000001000110011 Y
+b11 *
+b11 H
+b10 +
+b10 J
+b10 V
+1!
+#40000
+0!
+#45000
+b101 )
+b101 M
+b100 '
+b100 K
+b100000001010110011 -
+b100000001010110011 Y
+b100 *
+b100 H
+b11 +
+b11 J
+b11 V
+1!
+#50000
+0!
+#55000
+b110 )
+b110 M
+b101 '
+b101 K
+b101000001100110011 -
+b101000001100110011 Y
+b101 *
+b101 H
+b100 +
+b100 J
+b100 V
+1!
+#60000
+0!
+#65000
+b111 )
+b111 M
+b110 '
+b110 K
+b110000001110110011 -
+b110000001110110011 Y
+b110 *
+b110 H
+b101 +
+b101 J
+b101 V
+1!
+#70000
+0!
+#75000
+b1000 )
+b1000 M
+b111 '
+b111 K
+b111000010000110011 -
+b111000010000110011 Y
+b111 *
+b111 H
+b110 +
+b110 J
+b110 V
+1!
+#80000
+0!
+#85000
+b1001 )
+b1001 M
+b1000 '
+b1000 K
+b1000000010010110011 -
+b1000000010010110011 Y
+b1000 *
+b1000 H
+b111 +
+b111 J
+b111 V
+1!
+#90000
+0!
+#95000
+b1010 )
+b1010 M
+b1001 '
+b1001 K
+b1001000010100110011 -
+b1001000010100110011 Y
+b1001 *
+b1001 H
+b1000 +
+b1000 J
+b1000 V
+1!
+#100000
+0!
+#105000
+b1011 )
+b1011 M
+b1010 '
+b1010 K
+b1010000010110110011 -
+b1010000010110110011 Y
+b1010 *
+b1010 H
+b1001 +
+b1001 J
+b1001 V
+1!
+#110000
+0!
+#115000
+b1100 )
+b1100 M
+b1011 '
+b1011 K
+b1011000011000110011 -
+b1011000011000110011 Y
+b1011 *
+b1011 H
+b1010 +
+b1010 J
+b1010 V
+1!
+#120000
+0!
+#125000
+b1101 )
+b1101 M
+b1100 '
+b1100 K
+b1100000011010110011 -
+b1100000011010110011 Y
+b1100 *
+b1100 H
+b1011 +
+b1011 J
+b1011 V
+1!
+#130000
+0!
+#135000
+b1110 )
+b1110 M
+b1101 '
+b1101 K
+b1101000011100110011 -
+b1101000011100110011 Y
+b1101 *
+b1101 H
+b1100 +
+b1100 J
+b1100 V
+1!
+#140000
+0!
+#145000
+b1111 )
+b1111 M
+b1110 '
+b1110 K
+b1110000011110110011 -
+b1110000011110110011 Y
+b1110 *
+b1110 H
+b1101 +
+b1101 J
+b1101 V
+1!
+#150000
+0!
+#155000
+b10000 )
+b10000 M
+b1111 '
+b1111 K
+b1111000100000110011 -
+b1111000100000110011 Y
+b1111 *
+b1111 H
+b1110 +
+b1110 J
+b1110 V
+1!
+#160000
+0!
+#165000
+b10001 )
+b10001 M
+b10000 '
+b10000 K
+b10000000100010110011 -
+b10000000100010110011 Y
+b0 *
+b0 H
+b1111 +
+b1111 J
+b1111 V
+1!
+#170000
+0!
+#175000
+b10011 ,
+b0 )
+b0 M
+b0 '
+b0 K
+b10011 -
+b10011 Y
+b1 *
+b1 H
+b0 +
+b0 J
+b0 V
+1!
+#180000
+0!
+#185000
+b110011 ,
+b11 )
+b11 M
+b10 '
+b10 K
+b10000000110110011 -
+b10000000110110011 Y
+b10 *
+b10 H
+b1 +
+b1 J
+b1 V
+1!
+#190000
+0!
+#195000
+b100 )
+b100 M
+b11 '
+b11 K
+b11000001000110011 -
+b11000001000110011 Y
+b11 *
+b11 H
+b10 +
+b10 J
+b10 V
+1!
+#200000
+0!
+#205000
+b101 )
+b101 M
+b100 '
+b100 K
+b100000001010110011 -
+b100000001010110011 Y
+b100 *
+b100 H
+b11 +
+b11 J
+b11 V
+1!
+#210000
+0!
+#215000
+b110 )
+b110 M
+b101 '
+b101 K
+b101000001100110011 -
+b101000001100110011 Y
+b101 *
+b101 H
+b100 +
+b100 J
+b100 V
+1!
+#220000
+0!

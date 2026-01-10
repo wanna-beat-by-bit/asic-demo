@@ -1,0 +1,14 @@
+# Claude Code Project Rules
+
+## Scope
+This project is located at: `/Users/alex/Documents/programming/my/cpu-core`
+
+## Rules
+1. **File Operations Boundary**: Only create, read, modify, or delete files within the cpu-core project directory
+2. **No External Access**: Never access or modify files outside of this project directory
+3. **Freedom Within Project**: Full freedom to work with any files, configurations, source code, tests, documentation within this directory to accomplish tasks
+
+## Project Context
+- RISC-V-like CPU core implementation in Verilog
+- Focus on testable units and extensibility
+- Uses Docker + Makefile for building and testing

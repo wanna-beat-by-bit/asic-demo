@@ -23,9 +23,9 @@ module control_unit #(
     parameter OP_TYPE = 3'b000
 )(
     input wire [OP_WIDTH-1:0] opcode,
-    output wire is_reg_write,
-    output wire alu_src_type,
-    output wire [OP_WIDTH-1:0] alu_op
+    output reg is_reg_write,
+    output reg alu_src_type,
+    output reg [OP_WIDTH-1:0] alu_op
 );
 
 always_comb begin
