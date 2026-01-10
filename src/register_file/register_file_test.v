@@ -16,8 +16,8 @@ reg [ADDR_SPACE-1:0] r2_addr;
 reg [ADDR_SPACE-1:0] wr_addr;
 reg wr_en;
 reg [WIDTH-1:0] wr_data;
-wire [WIDTH-1:0] r1;
-wire [WIDTH-1:0] r2;
+wire [WIDTH-1:0] r1_data;
+wire [WIDTH-1:0] r2_data;
 
 register_file rf(
     .clk(clk),
@@ -27,8 +27,8 @@ register_file rf(
     .wr_addr(wr_addr),
     .wr_en(wr_en),
     .wr_data(wr_data),
-    .r1(r1),
-    .r2(r2)
+    .r1_data(r1_data),
+    .r2_data(r2_data)
 );
 
 initial begin
@@ -61,9 +61,9 @@ task automatic test_wr;
         r1_addr = wr_a;
         tick(2);
         `ASSERT(
-            (wr_d == r1),
-            $sformatf("wr_a = %b | wr_d = %d | wr_e = %b", wr_a, wr_d, wr_e), 
-            $sformatf("+: wr_d = %d | -: r1 = %d ", wr_d, r1))
+            (wr_d == r1_data),
+            $sformatf("wr_a = %b | wr_d = %d | wr_e = %b", wr_a, wr_d, wr_e),
+            $sformatf("+: wr_d = %d | -: r1 = %d ", wr_d, r1_data))
     end
 endtask
 
